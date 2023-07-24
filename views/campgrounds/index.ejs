@@ -1,15 +1,26 @@
 <% layout('layouts/boilerplate') %>
 <div id="cluster-map"></div>
+<link rel="stylesheet" , href="/stylesheets/stars.css">
 <h1>All Campgrounds</h1>
 
 <% for(let campground of campgrounds) { %>
-    <div class="card mb-3">
+    <div class="card mb-4">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 mb-4">
                 <img class="img-fluid" alt="" src="<%= campground.images[0].url %>">
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 mb-4">
                 <h5 class="card-title"><%= campground.title %></h5>
+                <% let totalRatings = 0; %>
+                <% for (let review of campground.reviews) { %>
+                    <% totalRatings += review.rating; %>
+                <% } %>
+                <% let averageRating = totalRatings / campground.reviews.length; %>
+                <p class="starability-result" data-rating=<%= parseInt(averageRating.toFixed(2)) %>>
+                </p>
+                <p class="card-text">
+                    <small class="text-muted">reviewed by <%= campground.reviews.length %> people</small>
+                </p>
                 <p class="card-text"><%= campground.description %></p>
                 <p class="card-text">
                     <small class="text-muted"><%= campground.location %></small>
