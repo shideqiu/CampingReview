@@ -58,15 +58,16 @@ module.exports.renderChangePassword = async (req, res) => {
 module.exports.changePassword = async (req, res) => {
     try {
         const {username, email, oldPassword, newPassword} = req.body;
+        if (oldPassword === newPassword) {
+            req.flash('error', "The new password must be different.");
+            return res.redirect('/users')
+        }
         const user = await User.findOne({ $or: [{ email }, { username }] });
-        console.log("--------------")
-        console.log(user)
-        console.log(oldPassword)
         await req.user.changePassword(oldPassword, newPassword);
-        req.flash('success', 'Password changed successfully!')
+        req.flash('success', 'Password changed successfully! Please log in with new password.')
         res.redirect('/login')
     } catch (e) {
-        req.flash('error', e.message);
-        res.redirect('/logout');
+        req.flash('error', "The username or password is incorrect.");
+        res.redirect('/users')
     }
 }
