@@ -20,4 +20,10 @@ router.route('/login')
 
 router.get('/logout', users.logout)
 
+router.get('/users', users.users)
+
+router.route('/changePassword')
+    .get(users.renderChangePassword)
+    .post(users.changePassword)
+
 module.exports = router;

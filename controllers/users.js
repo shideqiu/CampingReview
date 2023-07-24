@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Campground = require("../models/campground");
 module.exports.renderRegister = (req, res) => {
     // res.send('here you go')
     res.render('users/register')
@@ -42,4 +43,30 @@ module.exports.logout = async (req, res, next) => {
         req.flash('success', 'Goodbye!')
         res.redirect('/campgrounds');
     });
+}
+
+module.exports.users = async (req, res) => {
+    const user = req.user
+    res.render('users/users', {user})
+}
+
+module.exports.renderChangePassword = async (req, res) => {
+    const user = req.user
+    res.render('users/changePassword', {user})
+}
+
+module.exports.changePassword = async (req, res) => {
+    try {
+        const {username, email, oldPassword, newPassword} = req.body;
+        const user = await User.findOne({ $or: [{ email }, { username }] });
+        console.log("--------------")
+        console.log(user)
+        console.log(oldPassword)
+        await req.user.changePassword(oldPassword, newPassword);
+        req.flash('success', 'Password changed successfully!')
+        res.redirect('/login')
+    } catch (e) {
+        req.flash('error', e.message);
+        res.redirect('/logout');
+    }
 }
