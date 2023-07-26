@@ -1,6 +1,6 @@
 # 🏕 Camp Review
 
-Yelp Camp is a web application that allows users to discover and review campgrounds. This project was built using Node.js, Express, MongoDB, and Bootstrap, with authentication handled by Passport.js. Users can create, edit, and remove campgrounds, as well as review campgrounds. The application also includes user profiles with additional information, the option to edit profiles, and the ability to delete accounts. Additionally, users can search campgrounds by name or location and sort them by various criteria. The application integrates Mapbox to display the locations of the campgrounds on a map, and it uses Cloudinary to store campground images. The database is hosted on MongoDB Atlas, and the server is deployed on Render.
+Camp Review is a web application that allows users to discover and review campgrounds. This project was built using Node.js, Express, MongoDB, and Bootstrap, with authentication handled by Passport.js. Users can create, edit, and remove campgrounds, as well as review campgrounds. The application also includes user profiles with additional information, the option to edit profiles, and the ability to delete accounts. Additionally, users can search campgrounds by name or location and sort them by various criteria. The application integrates Mapbox to display the locations of the campgrounds on a map, and it uses Cloudinary to store campground images. The database is hosted on MongoDB Atlas, and the server is deployed on Render.
 
 <a href="https://campingreview.onrender.com">
  <p align="center">
